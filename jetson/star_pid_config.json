@@ -1,0 +1,31 @@
+{
+  "coast_time_s": 0.2,
+  "command_rate_hz": 10.0,
+  "estimator_beta": 0.15,
+  "lost_grace_s": 0.08,
+  "max_prediction_px": 80.0,
+  "pan": {
+    "deadband_px": 8.0,
+    "feedforward_gain": 0.015,
+    "invert": true,
+    "kd": 0.004,
+    "ki": 0.001,
+    "kp": 0.105,
+    "max_accel_dps2": 250.0,
+    "max_rate_dps": 35.0
+  },
+  "prediction_time_s": 0.04,
+  "smoothing_alpha": 0.3,
+  "target_timeout_s": 0.45,
+  "tilt": {
+    "deadband_px": 8.0,
+    "feedforward_gain": 0.012,
+    "invert": true,
+    "kd": 0.004,
+    "ki": 0.002,
+    "kp": 0.3,
+    "max_accel_dps2": 180.0,
+    "max_rate_dps": 25.0
+  },
+  "tracking_enabled": true
+}

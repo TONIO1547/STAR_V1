@@ -23,7 +23,7 @@
 
 > **English summary** — S.T.A.R. V1 is a dual-turret robot that detects drones with a YOLOv5n model
 > running on a Jetson Nano (TensorRT) and tracks them with a PID-controlled pan/tilt turret driven by an
-> ESP32 over UDP. This repository contains the ESP32 firmware, the documentation, videos and the 3D files.
+> ESP32 over UDP. This repository contains the Jetson code, the ESP32 firmware, the documentation, videos and the 3D files.
 > A second version (V2) is in progress. **All rights reserved — published for viewing only (see LICENSE).**
 
 ---
@@ -60,6 +60,27 @@ Vidéos complètes : [`detection_deux_cameras.mp4`](media/videos/detection_deux_
 - **Liaison** : WiFi, commandes UDP de la Jetson vers l'ESP32 (port 4210).
 
 ![Algorithme](docs/images/algorithme.png)
+
+## Code Jetson — [`jetson/`](jetson)
+
+Le service `drone.service` lance [`stream_drone_pid.py`](jetson/stream_drone_pid.py)
+au démarrage. Points notables :
+
+- **Pipeline sans file d'attente** : chaque étage (capture, inférence, commande, flux web) ne
+  garde que la donnée la plus récente, pour que la latence ne dérive pas quand la Nano sature.
+- **Inférence prioritaire** : la caméra canon passe toujours avant la caméra de guet, qui
+  n'infère qu'à 2 Hz et seulement pendant la recherche.
+- **Suivi** : estimateur alpha-bêta, prédiction de 40 ms bornée à 80 px, puis PID en vitesse
+  avec feed-forward, anti-windup et limites de vitesse et d'accélération par axe.
+- **NMS réécrit à la main** (`torchvision.ops.nms`) pour accepter la sortie `(1, 5, 8400)` du
+  modèle entraîné avec un Ultralytics récent, que YOLOv5 v6.2 ne sait pas lire.
+- **Sécurité** : suivi désarmé à chaque démarrage, jeton `Bearer` exigé sur toutes les routes,
+  butées PAN/TILT vérifiées côté Jetson *et* ESP32, laser jamais activable par le réseau.
+- **Métriques** : une ligne `STAR_METRICS` toutes les deux secondes (FPS, TensorRT, NMS, âge de
+  frame, latence frame→commande, fréquence servo, coût JPEG).
+
+Les 13 tests du suivi tournent sans matériel : `cd jetson && python3 tests/test_star_pid.py -v`.
+Installation, réglage du PID et retour arrière : [`jetson/INSTALLATION.md`](jetson/INSTALLATION.md).
 
 ## Firmware ESP32 — [`firmware_esp32/`](firmware_esp32)
 
@@ -118,7 +139,7 @@ Projet PlatformIO (Arduino, ESP32 DevKit v1). Points notables :
 
 ```
 firmware_esp32/   firmware ESP32 (PlatformIO)
-jetson/           code de la Jetson Nano (à venir)
+jetson/           code de la Jetson Nano (détection, PID, serveur Flask)
 cao/              fichiers 3D de la V1 (.obj, assemblage et pièces)
 docs/             rapport final, présentation, schémas
 media/            photos, GIF et vidéos

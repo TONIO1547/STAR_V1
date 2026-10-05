@@ -1,0 +1,24 @@
+[Unit]
+Description=S.T.A.R. Jetson vision and tracking service
+Wants=network-online.target
+After=network-online.target
+RequiresMountsFor=/mnt/sdcard
+
+[Service]
+Type=simple
+User=robot3
+Group=robot3
+SupplementaryGroups=video dialout tty
+WorkingDirectory=/mnt/sdcard/yolov5
+Environment=PYTHONUNBUFFERED=1
+Environment=PYTHONPATH=/mnt/sdcard/lib/python3.6/site-packages
+EnvironmentFile=-/etc/star-tracking.env
+EnvironmentFile=/etc/star-device.env
+ExecStart=/usr/bin/python3 /mnt/sdcard/yolov5/stream_drone_pid.py
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=15
+
+[Install]
+WantedBy=multi-user.target
+
