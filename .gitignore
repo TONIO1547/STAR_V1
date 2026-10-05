@@ -16,7 +16,5 @@ __pycache__/
 *.pt
 *.onnx
 
-# Gros fichiers CAO bruts
-*.obj
-*.mtl
+# Fichiers CAO intermédiaires
 *.fbx

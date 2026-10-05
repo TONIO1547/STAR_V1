@@ -23,8 +23,8 @@
 
 > **English summary** — S.T.A.R. V1 is a dual-turret robot that detects drones with a YOLOv5n model
 > running on a Jetson Nano (TensorRT) and tracks them with a PID-controlled pan/tilt turret driven by an
-> ESP32 over UDP. This repository contains the ESP32 firmware, the documentation, videos and the 3D model.
-> A second version (V2) is in progress.
+> ESP32 over UDP. This repository contains the ESP32 firmware, the documentation, videos and the 3D files.
+> A second version (V2) is in progress. **All rights reserved — published for viewing only (see LICENSE).**
 
 ---
 
@@ -118,10 +118,16 @@ Projet PlatformIO (Arduino, ESP32 DevKit v1). Points notables :
 ```
 firmware_esp32/   firmware ESP32 (PlatformIO)
 jetson/           code de la Jetson Nano (à venir)
-cao/              modèle 3D de la V1 (.glb)
+cao/              fichiers 3D de la V1 (.obj, assemblage et pièces)
 docs/             rapport final, présentation, schémas
 media/            photos, GIF et vidéos
 ```
+
+## Licence
+
+**Tous droits réservés.** Ce dépôt est publié uniquement pour être consulté : le code, les fichiers CAO
+et les documents ne peuvent pas être copiés, modifiés ou réutilisés sans mon autorisation écrite.
+Voir [LICENSE](LICENSE).
 
 ## Auteur
 
