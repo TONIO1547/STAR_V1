@@ -43,9 +43,10 @@ téléphone, qui permet aussi de piloter la base à chenilles.
 
 | Vue de la caméra pendant le suivi | Détection sur les deux caméras |
 |---|---|
-| ![Tracking](media/tracking.gif) | Vidéo : [`detection_deux_cameras.mp4`](media/videos/detection_deux_cameras.mp4) |
+| <img src="media/tracking.gif" alt="Tracking" height="300"> | <img src="media/detection.gif" alt="Détection sur les deux caméras" height="300"> |
 
-Autres vidéos : [`fonctionnement_1.mp4`](media/videos/fonctionnement_1.mp4) ·
+Vidéos complètes : [`detection_deux_cameras.mp4`](media/videos/detection_deux_cameras.mp4) ·
+[`fonctionnement_1.mp4`](media/videos/fonctionnement_1.mp4) ·
 [`fonctionnement_2.mp4`](media/videos/fonctionnement_2.mp4) ·
 [`vue_camera_tracking.mp4`](media/videos/vue_camera_tracking.mp4)
 
