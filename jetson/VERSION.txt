@@ -1,0 +1,20 @@
+S.T.A.R. realtime tracking v3 — 2026-08-20
+
+- pipeline latest-frame-only sans backlog image ou commande ;
+- CAM01 Canon principale, TensorRT prioritaire et cadence non plafonnée ;
+- CAM02 Guet opportuniste à 2 Hz avec handoff immédiat ;
+- streaming JPEG à la demande avec modes 6 / 3 / 0 FPS ;
+- métriques capture, IA, TensorRT, NMS, tracking, frame→commande et servo ;
+- alpha-bêta, prédiction, PID vitesse, feed-forward, anti-windup et limites ;
+- protocole UDP séquencé avec angles flottants ;
+- ESP32 writeMicroseconds, interpolation 100 Hz et watchdog servo ;
+- panneau de performance et réglages avancés publié sur le site.
+
+- priorité d'inférence donnée à la caméra canon ;
+- flux web allégé pour Jetson Nano ;
+- commande manuelle séparée des tourelles guet et canon ;
+- limites PAN 0–180° et TILT 90–150° contrôlées à trois niveaux ;
+- arrêt du balayage et ignorance complète des détections de la caméra guet ;
+- CAM01 est la caméra canon principale (IA prioritaire) et CAM02 la caméra de guet ;
+- les commandes et l'arrêt de CAM02 ne désarment jamais le tracking de CAM01 ;
+- tracking et laser automatiquement désarmés uniquement lors d'une commande manuelle du canon.

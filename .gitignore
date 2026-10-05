@@ -18,3 +18,10 @@ __pycache__/
 
 # Fichiers CAO intermédiaires
 *.fbx
+*.trt
+
+# Runtime Jetson (jamais versionne)
+report/
+backups/
+*.env
+!*.env.example
